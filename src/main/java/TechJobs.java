@@ -123,17 +123,16 @@ public class TechJobs {
 
         if(someJobs.size() == 0) {
             System.out.println("No results");
-        } else if (someJobs.size() >=1) {
-
-            for (int i=0; i< someJobs.size(); i++){
-                System.out.println("\n*****" );
-                for(Map.Entry<String, String>entry: someJobs.get(i).entrySet()) {
-                    String key = entry.getKey();
-                    String value = entry.getValue();
-
-                    System.out.println( key + ":" + value );
-                }
+        } else {
+            for (int i = 0; i < someJobs.size(); i++){
                 System.out.println("*****" );
+                for(Map.Entry<String, String>jobs: someJobs.get(i).entrySet()) {
+                    String key = jobs.getKey();
+                    String value = jobs.getValue();
+
+                    System.out.println( key + ": " + value );
+                }
+                System.out.println("*****\n" );
             }
         }
     }
