@@ -73,7 +73,7 @@ public class JobData {
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
-
+           // System.out.println(row.get(column));
             String aValue = row.get(column);
 
             if (aValue.contains(value)) {
@@ -83,7 +83,6 @@ public class JobData {
 
         return jobs;
     }
-
     /**
      * Search all columns for the given term
      *
@@ -92,18 +91,27 @@ public class JobData {
      */
     public static ArrayList<HashMap<String, String>> findByValue(String value) {
 
+
         // load data, if not already loaded
         loadData();
-        // TODO - implement this method
-        ArrayList<HashMap<String, String>> allColumns = new ArrayList<>();
-        for (HashMap<String, String> jobs: allJobs) {
-            for (Map.Entry<String, String> job : jobs.entrySet()) {
-                if (job.getValue().toLowerCase().contains(value.toLowerCase()) && !allColumns.contains(jobs)) {
-                    allColumns.add(jobs);
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+           // System.out.println(row.keySet());
+            // Iterate over HashMap using foreach loop
+            for(Map.Entry<String, String> entry : row.entrySet()){
+                if(entry.getValue().toLowerCase().contains(value.toLowerCase()) && !jobs.contains(row)) {
+                    jobs.add(row);
+                    //System.out.println(entry.getValue());
+
                 }
+                //System.out.println(entry.getValue());
             }
-        }
-        return allColumns;
+
+            }
+
+        return jobs;
     }
 
     /**
